@@ -1,4 +1,4 @@
-﻿<html lang="en" >
+<html lang="en" >
 
 <meta charset="UTF-8">
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -18,7 +18,7 @@
                 <div class="men2 text-center center-block">
                     <ul class="list-unstyled">
                         <li> <button class="btn btn-primary btn-block tryb nauczsie " type="button">Nauka liczenia</button> </li>
-                        <li> <button class="btn btn-primary btn-block tryb dzialajsie " type="button">Nauka działań</button> </li>
+                   <!--    <li> <button class="btn btn-primary btn-block tryb dzialajsie " type="button">Nauka działań</button> </li> -->
                         <li> <button id="czy" class="btn btn-primary btn-block tryb sprawdzsie " type="button">Sprawdź się</button> </li>
                     </ul>
                 </div>
@@ -31,9 +31,9 @@
             <div id="sidebar-wrapper">
                 <div class="col-xs-12">
                     <button class="btn btn-primary btn-lg btn-block tryb " type="button" >Wybór trybu</button>
-                    <button class="btn btn-primary btn-lg btn-block" type="button" onclick="random()">losuj liczby</button> 
-                    <button class="btn btn-primary btn-lg btn-block" type="button" onclick="losowanie()">losuj liczby</button> 
-                    <button class="btn btn-primary btn-lg btn-block" id="zdj" type="button" onclick="sprawdz()">Sprawdz</button>
+                    <button class="btn btn-primary btn-lg btn-block nauczanie" type="button" onclick="random()">losuj liczby</button> 
+                    <button class="btn btn-primary btn-lg btn-block sprawdzian" type="button" onclick="pierwszyRaz()">losuj liczby</button> 
+                <!--    <button class="btn btn-primary btn-lg btn-block" id="zdj" type="button" onclick="sprawdz()">Sprawdz</button> -->
                     <button class="btn btn-primary btn-lg btn-block rozw" type="button" onclick="dzialania()">Opcje</button>
                     
 <!-------------------------Sprawdzanie------------------------------>                      
@@ -55,11 +55,11 @@
                     </div>
                 </div>
             </div>
-             <div id="page-content-wrapper">
+             
                  
  <!-------------------------NAUCZANIE------------------------------>                
-                 
-                 <div class="container nauczanie">
+             <div id="page-content-wrapper">    
+                 <div class="container-fluid nauczanie">
                     <div class="row">
                         <div class="col-sm-3  text-left">
                             <span class="glyphicon glyphicon-remove zwijacz" aria-hidden="true"></span>
@@ -69,14 +69,17 @@
                      </div>
                      <div class="row">
                        <div id="rand" class="col-sm-12 "></div>
-                       <h1 id="licznik"></h1>
+                       <h1 id="licz"></h1>
                     </div>
                 </div> 
  <!-------------------------sprawdzian------------------------------>  
-                <div class="container sprawdzian">
+                <div class="container-fluid sprawdzian">
                     <div class="row">
-                        <div class="col-sm-3"><h1 id="3"></h1></div>
-                        <div class="col-sm-1"><h1><input type="number" id="spr" placeholder="wynik" onkeydown="javascript:return fnIgnoreEnter(event);" ></h1></div><div class="col-sm-1"><h1></h1></div>
+                        <div class="col-xs-12 text-right" id="punkty">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><h1 id="3"></h1></div>
+                        <div class="col-sm-1"><h1><input type="number" style="width:110px" id="spr" placeholder="wynik" onkeydown="javascript:return fnIgnoreEnter(event);" ></h1></div><div class="col-sm-1"><h1></h1></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12 text-center">

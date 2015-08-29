@@ -1,6 +1,5 @@
-﻿/////////////////////// GLOBALNE ZMIENNE////////////////////
-var licznikKulek = 0;
-
+/////////////////////// GLOBALNE ZMIENNE////////////////////
+var licznikKulek = 0, poprawneOdpowiedzi = 0, myVar;
 
 
 /////////////////////// SPRAWDZENIE ////////////////////
@@ -11,9 +10,15 @@ function sprawdz() {
     document.getElementById('obliczono').innerHTML = wyna;
     if (wyna == niewidz) {
         document.getElementById('opinia').innerHTML = "Twój wynik jest poprawny";
+        counter(true);
+        console.log('tak');
+        myVar = window.setTimeout(losowanie,1000);
+        console.log('ttu też');
     } else {
         document.getElementById('opinia').innerHTML = "oj oj coś poszło nie tak :( masz zły wynik";
-
+        counter(false);
+        myVar = window.setTimeout(losowanie,1000);
+    //    clearTimeout(myVar);
     }
 }
 function fnIgnoreEnter(thisEvent) {
@@ -25,24 +30,30 @@ var elementy = ['+', '-', '*', '/'];
 var zakresliczenia = 1;
 /////////////////////// MENUE       ////////////////////
 /////////////////////// Czyszczenie ////////////////////
-function czyszczenie() {
+function czyszczenie(min) {
+    if(min){
+    document.getElementById('spr').value = "";
+    }else{
     document.getElementById('spr').value = "";
     document.getElementById('odpowiedz').innerHTML = "";
     document.getElementById('obliczono').innerHTML = "";
     document.getElementById('opinia').innerHTML = "";
-    document.getElementById('rand').innerHTML = "";
-    document.getElementById("licznik").innerHTML = "";	
+    document.getElementById('rand').innerHTML = "";	
     licznikKulek = 0;
+    }
 }
        
 /////////////////////// Losowanie ////////////////////
-
+function pierwszyRaz(){
+    losowanie();
+    timer();
+    czyszczenie(false);
+    
+}
 function losowanie() {
     zakres();
-    czyszczenie();
-    if(document.getElementById("licznik").innerHTML == ""){
-    timer();
-    }
+    czyszczenie(true);
+    clearTimeout(myVar);
     var pierwsza = Math.round(Math.random() * (document.getElementById("zakresLiczenia").value - 1) + 1), druga = Math.round(Math.random() * (document.getElementById("zakresLiczenia").value - 1) + 1), obliczenie, form = document.getElementById('niewidzialny'), i = Math.round(Math.random() * (elementy.length - 1)), z = document.getElementById('3'), wyn = document.getElementById('wynik');
     z.innerHTML = pierwsza + "  " + elementy[i] + "  " + druga + "  =";
     switch (elementy[i]) {
@@ -95,7 +106,7 @@ function decrement() {
 /////////////////////// Timer ////////////////////
 function timer(){
     
-    var myVar = setInterval(function() {myTimer()}, 1000), d = 10;
+    var myVar = setInterval(function() {myTimer()}, 1000), d = 60;
     function myTimer() {
         d -= 1;
         if (d <= 0){
@@ -103,7 +114,7 @@ function timer(){
             sprawdz();
             clearInterval(myVar);
             console.log("wyczyszczono");
-        } else document.getElementById("licznik").innerHTML = d;
+        } else document.getElementById("licznik").innerHTML = d+ ' sekund';
     }
 }
 /////////////////////// Nauczanie ////////////////////
@@ -130,5 +141,13 @@ function usun(ten){
          ten.style.opacity = "1";
          licznikKulek += 1;
      }
-     document.getElementById("licznik").innerHTML = licznikKulek;
+     document.getElementById("licz").innerHTML = licznikKulek;
+}
+function counter(bol){
+    if(bol){
+       poprawneOdpowiedzi +=1;
+    }else{
+       poprawneOdpowiedzi -=1;
+    }
+    document.getElementById("punkty").innerHTML = poprawneOdpowiedzi + " pkt."
 }
